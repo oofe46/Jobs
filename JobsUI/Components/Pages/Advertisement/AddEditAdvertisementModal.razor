@@ -1,0 +1,94 @@
+﻿@using JopsInterfaceServis.Interfacs;
+@using System.Text.RegularExpressions;
+@using Jops.Domain.Entity;
+
+
+@if (isVisible)
+{
+    <div class="modal show" tabindex="-1" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@((advertisement.Id == 0) ? "Add advertisement" : "Edit advertisement")</h5>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="Cancel"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="title" @bind="advertisement.Discerioton">
+                    </div>
+                    <div class="mb-3">
+                        <label for="isbn" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="isbn" @bind="advertisement.Location">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numberOfPages" class="form-label">Number of Pages</label>
+                        <input type="number" class="form-control" id="numberOfPages" @bind="advertisement.Salary">
+                    </div>
+                    <div class="mb-3">
+                        <label for="language" class="form-label">Language</label>
+                        <input type="text" class="form-control" id="language" @bind="advertisement.Hours">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="language" class="form-label">Language</label>
+                        <input type="text" class="form-control" id="language" @bind="advertisement.Valid">
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <label for="language" class="form-label">Language</label>
+                        <input type="text" class="form-control" id="language" @bind="advertisement.Approved">
+                    </div>
+
+
+                   
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                    <button type="button" class="btn btn-primary" @onclick="Save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@code {
+
+    [Parameter] public EventCallback OnSave { get; set; }
+
+    [Inject] public AdvertisementIRep CompanyService { get; set; }
+
+    private bool isVisible;
+
+    private Advertisement advertisement = new();
+
+    public void Show(Advertisement advertisement)
+    {
+        this.advertisement = advertisement;
+        isVisible = true;
+    }
+
+    private void Save()
+    {
+        if (advertisement.Id == 0)
+        {
+            CompanyService.Creat(advertisement);
+        }
+        else
+        {
+            CompanyService.Update(advertisement);
+        }
+
+        isVisible = false;
+        OnSave.InvokeAsync();
+    }
+
+    private void Cancel()
+    {
+        isVisible = false;
+    }
+}

@@ -1,0 +1,109 @@
+﻿@page "/Company"
+@rendermode InteractiveServer
+
+@using JopsInterfaceServis.Interfacs;
+@using System.Text.RegularExpressions;
+@using Jops.Domain.Entity;
+
+
+<h3>Company</h3>
+
+<button class="btn btn-primary" @onclick="ShowAddModal">Add New Company</button>
+
+<br />
+
+
+<br />
+<br />
+
+
+@if (companies == null)
+{
+    <span>Loading...</span>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Email</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in companies)
+            {
+                <tr>
+                    <td>@company.Id</td>
+                    <td>@company.Name</td>
+                    <td>@company.Locaton</td>
+                    <td>@company.Email</td>
+
+                    
+                    <td>
+                        <button class="btn btn-secondary" @onclick="() => ShowEditModal(company)">Edit</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteVenue(company)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<AddEditCompanyModal @ref="addEditComanyModal" OnSave="RefreshList" />
+  @* <div style="width:200px">
+    <SarchVenue @ref="sarchVenue" OnSearch="SarchVenue"></SarchVenue>
+</div>   *@
+@code {
+    [Inject] CompanyIRep CompanySirves { get; set; }
+
+    private List<Company> companies;
+
+    private AddEditCompanyModal addEditVenueModal;
+    // public SarchVenue sarchVenue;
+    private string searchItem;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadVenue();
+    }
+
+    private async Task LoadVenue()
+    {
+
+        companies = await CompanySirves.GetAll();
+
+    }
+
+   
+
+    private void ShowSearchModal ()
+    {
+        
+    }
+
+    private void ShowAddModal()
+    {
+        addEditVenueModal.Show(new Company());
+    }
+
+    private void ShowEditModal(Company company)
+    {
+        addEditVenueModal.Show(company);
+    }
+
+    private void DeleteVenue(Company company)
+    {
+        CompanySirves.Delete(company);
+        LoadVenue();
+    }
+
+    private void RefreshList()
+    {
+        LoadVenue();
+    }
+}

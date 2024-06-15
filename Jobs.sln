@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jops.Context", "Jops.Contex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jops.Domain", "Jops.Domain\Jops.Domain.csproj", "{554A7A10-5007-44A7-963C-60173058954B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobsServis", "JobsServis\JobsServis.csproj", "{1862D138-D140-4E2A-8A7C-5D13CA8181A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsServis", "JobsServis\JobsServis.csproj", "{1862D138-D140-4E2A-8A7C-5D13CA8181A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JopsInterfaceServis", "JopsInterfaceServis\JopsInterfaceServis.csproj", "{1613A1EF-89D2-4384-ABDE-271BEFD62167}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JopsInterfaceServis", "JopsInterfaceServis\JopsInterfaceServis.csproj", "{1613A1EF-89D2-4384-ABDE-271BEFD62167}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

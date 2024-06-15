@@ -45,7 +45,7 @@ namespace JobsServis.Repsatory
         public async Task<List<Advertisement>> GetAll()
         {
 
-            return [.. await db.advertisements.ToListAsync()];
+            return [.. await db.advertisements.Include(a=>a.Company).ToListAsync()];
         }
 
         public async Task<Advertisement?> GetById(int id)

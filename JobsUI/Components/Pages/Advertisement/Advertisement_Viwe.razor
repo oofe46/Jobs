@@ -1,0 +1,117 @@
+﻿@page "/advertisements"
+@rendermode InteractiveServer
+
+@using JopsInterfaceServis.Interfacs;
+@using System.Text.RegularExpressions;
+@using Jops.Domain.Entity;
+
+
+<h3>advertisements</h3>
+
+<button class="btn btn-primary" @onclick="ShowAddModal">Add New advertisements</button>
+
+<br />
+
+
+<br />
+<br />
+
+
+@if (advertisements == null)
+{
+    <span>Loading...</span>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Location</th>
+                <th>Discerioton</th>
+                <th>Salary</th>
+                <th>Hours</th>
+                <th>Valid</th>
+                <th>Approved</th>
+                <th>CompanyId</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in advertisements)
+            {
+                <tr>
+                    <td>@company.Id</td>
+                    <td>@company.Location</td>
+                    <td>@company.Discerioton</td>
+                    <td>@company.Salary</td>
+                    <td>@company.Hours</td>
+                    <td>@company.Valid</td>
+                    <td>@company.Approved</td>
+                    <td>@company.CompanyId</td>
+
+                    
+                    <td>
+                        <button class="btn btn-secondary" @onclick="() => ShowEditModal(company)">Edit</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteVenue(company)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<AddEditAdvertisementModal @ref="addEditVenueModal" OnSave="RefreshList" />
+  @* <div style="width:200px">
+    <SarchVenue @ref="sarchVenue" OnSearch="SarchVenue"></SarchVenue>
+</div>   *@
+@code {
+    [Inject] AdvertisementIRep CompanySirves { get; set; }
+
+    private List<Advertisement> advertisements;
+
+    private AddEditAdvertisementModal addEditVenueModal;
+    // public SarchVenue sarchVenue;
+    private string searchItem;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadVenue();
+    }
+
+    private async Task LoadVenue()
+    {
+
+        advertisements = await CompanySirves.GetAll();
+
+    }
+
+   
+
+    private void ShowSearchModal ()
+    {
+        
+    }
+
+    private void ShowAddModal()
+    {
+        addEditVenueModal.Show(new ());
+    }
+
+    private void ShowEditModal(Advertisement company)
+    {
+        addEditVenueModal.Show(company);
+    }
+
+    private void DeleteVenue(Advertisement company)
+    {
+        CompanySirves.Delete(company);
+        LoadVenue();
+    }
+
+    private void RefreshList()
+    {
+        LoadVenue();
+    }
+}

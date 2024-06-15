@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JopsInterfaceServis.Interfacs
 {
-    public class AdvertisementIRep
+    public interface AdvertisementIRep
     {
         public Task<List<Advertisement>> GetAll();
         public Task<Advertisement> GetById(int id);
