@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobsServis", "JobsServis\Jo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JopsInterfaceServis", "JopsInterfaceServis\JopsInterfaceServis.csproj", "{1613A1EF-89D2-4384-ABDE-271BEFD62167}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.Test", "Company.Test\Company.Test.csproj", "{AFF75AC0-B83B-458A-97C6-DCF03EFF6E40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1613A1EF-89D2-4384-ABDE-271BEFD62167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1613A1EF-89D2-4384-ABDE-271BEFD62167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1613A1EF-89D2-4384-ABDE-271BEFD62167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF75AC0-B83B-458A-97C6-DCF03EFF6E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF75AC0-B83B-458A-97C6-DCF03EFF6E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF75AC0-B83B-458A-97C6-DCF03EFF6E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF75AC0-B83B-458A-97C6-DCF03EFF6E40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
